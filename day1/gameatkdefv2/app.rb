@@ -14,7 +14,7 @@ while true
     
     puts "==================="
     khotun.attack(jin)
+    break if jin.die?
     jin.deflect_attack(80,khotun)
     puts jin
-    break if jin.die?
 end

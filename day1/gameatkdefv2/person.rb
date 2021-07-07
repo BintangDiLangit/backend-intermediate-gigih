@@ -25,11 +25,12 @@ class Person
         end
     end
     def deflect_attack(percent,other_person)
-        finalAtk = other_person.attack_damage - (other_person.attack_damage * (percent.to_f / 100.to_f ))
+        pcr = rand(20..80);
+        finalAtk = other_person.attack_damage - (other_person.attack_damage * (pcr.to_f / 100.to_f ))
         @hitpoint += other_person.attack_damage-finalAtk.to_i
-        puts "#{name} deflect the #{percent}% attack damage from #{other_person.name}"
+        puts "#{name} deflect the #{pcr}% attack damage from #{other_person.name}"
         # puts "finalAtk : #{finalAtk}"
-        # puts "persen : #{percent}"
+        # puts "persen : #{pcr}"
         # puts "Other attack : #{other_person.attack_damage}"
         # puts "hitpoint #{@hitpoint}"
     end
