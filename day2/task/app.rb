@@ -11,15 +11,15 @@ sensei = Hero.new("Sensei Ishikawa", 80, 60)
 # Villain
 khotun = Person.new("Khotun Khan", 500, 50)
 
-mongol_archer = MongolArcher.new("Mongol Archer", 80, 40)
-mongol_spearman = MongolSpearman.new("Mongol Spearman", 120, 60)
-mongol_swordman = MongolSwordsman.new("Mongol Swordsman", 100, 50)
+mongol_archer = MongolArcher.new("Mongol Archer", 800, 40)
+mongol_spearman = MongolSpearman.new("Mongol Spearman", 1200, 60)
+mongol_swordman = MongolSwordsman.new("Mongol Swordsman", 1000, 50)
 
 villains = [mongol_archer, mongol_spearman, mongol_swordman]
 heroes = [jin,yuna,sensei]
 i = 1
 until (heroes.empty? || villains.empty?) do
-    puts "========= Turn #{i} ==========\n"
+    puts "========= Turn #{i} =========\n"
     heroes.each do |h|
         puts h
     end
@@ -34,13 +34,12 @@ until (heroes.empty? || villains.empty?) do
         if h == 0
             puts "As Jin Sakai, what do you want to do this turn?"
             puts "1) Attack an enemy"
-            puts "2) Heal an ally"
+            if heroes.size > 1
+                puts "2) Heal an ally"
+            end
             number = gets.chomp.to_i
             num = 1
             if number == 1
-                if villains.empty?
-                    puts "Hero Win"
-                else
                     villains.each do |v|
                         puts "#{num}) #{v.name}" 
                         num += 1
@@ -51,7 +50,6 @@ until (heroes.empty? || villains.empty?) do
                     villains.each do |v|
                         villains.delete(v) if v.die? || v.flee?
                     end
-                end
             elsif number == 2
                 while num < heroes.size
                     puts "#{num}) #{heroes[num].name}" 
@@ -61,25 +59,26 @@ until (heroes.empty? || villains.empty?) do
                 heroes[h].heal(heroes[numberHeal])
             else 
                 puts "Wrong Input!"
+                break
             end
         else
             if villains.empty? == false
                 v = rand(villains.size)
-                puts "=Other="
+                puts "= Other ="
                 heroes[h].attack(villains[v])
                 villains.each do |v|
                     villains.delete(v) if v.die? || v.flee?
                 end
-                puts "=Other="
+                puts "= Other ="
             end
         end
         h += 1
     end
        
     if villains.empty?
-        puts "Hero Win"
+        puts "============== Hero Win =============="
+        break
     else
-
         villains.each do |v|
             if v.flee? == false
                 h = rand(heroes.size)
@@ -87,10 +86,11 @@ until (heroes.empty? || villains.empty?) do
                 if heroes[h].die?
                     heroes.delete(heroes[h]) 
                     if heroes.empty?
-                        puts "Villain Win"
+                        puts "============== Villain Win =============="
+                        break
                     end
                 end 
-            end
+            end  
         end
         puts "\n"
     end

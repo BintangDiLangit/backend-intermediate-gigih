@@ -21,9 +21,8 @@ class Hero < Person
 end
 
 class MyHero < Hero
-
   def heal(other_person)
     other_person.take_heal(20)
-    puts "#{name} heals #{other_person.name}, restoring 20 hispoint"
+    puts "#{name} heals #{other_person.name}, restoring 20 hitpoint"
   end
 end
