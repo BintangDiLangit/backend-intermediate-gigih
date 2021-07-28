@@ -17,4 +17,12 @@ RSpec.describe Func do
 
         expect(result).to eq([1, 4, 0])
     end
+    it 'returns [1 4 1] if passed [1 4 0]' do
+        func = Func.new
+
+        arr = [1,4,0]
+        result = func.func1(arr)
+
+        expect(result).to eq([1, 4, 1])
+    end
 end
