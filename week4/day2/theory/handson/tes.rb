@@ -34,4 +34,13 @@ RSpec.describe Func do
 
         expect(result).to eq([1])
     end
+    it 'returns [1,0] if passed [9]' do
+        func = Func.new
+
+        arr = [9]
+        
+        result = func.func1(arr)
+
+        expect(result).to eq([1,0])
+    end
 end
