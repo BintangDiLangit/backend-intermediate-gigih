@@ -23,6 +23,18 @@ def get_all_items
     items
 end
 
+def get_item_by_id(id)
+    client = create_db_client
+    rawData = client.query("SELECT i.id, i.name as 'item_name', i.price, c.id as 'category_id', 
+        c.name as 'category_name' 
+        FROM items i LEFT JOIN
+        item_categories ic ON i.id = ic.item_id
+        LEFT JOIN categories c on c.id = ic.category_id
+        WHERE i.id = #{id}
+        ")
+end
+
+
 def get_all_categories
     client = create_db_client
     rawData = client.query("select*from categories")
@@ -49,12 +61,6 @@ def get_all_items_with_categories
     items
 end
 
-
-# def insert_item(name, price)
-#     client = create_db_client
-#     client.query("INSERT INTO items (name, price) values ('#{name}', '#{price}')")
-# end
-
 def insert_item_with_category(name, price, category_id)
     client = create_db_client
     client.query("INSERT INTO items (name, price) values ('#{name}', '#{price}')")
@@ -64,4 +70,13 @@ def insert_item_with_category(name, price, category_id)
 end
 
 
-puts(get_all_items_with_categories)
+def update_item_with_category(name, price, category_id){
+    client = create_db_client
+    client.query("
+        update items set 
+        name = '#{name}'
+        price = #{price}
+        where_id
+        ")
+    item_id = client.last_id
+}
