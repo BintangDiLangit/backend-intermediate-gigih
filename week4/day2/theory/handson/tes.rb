@@ -29,6 +29,7 @@ RSpec.describe Func do
         func = Func.new
 
         arr = []
+        
         result = func.func1(arr)
 
         expect(result).to eq([1])
