@@ -1,5 +1,5 @@
-require_relative '../controller/CategoryController'
-require_relative '../controller/ItemController'
+require_relative '../controller/categorycontroller'
+require_relative '../controller/itemcontroller'
 require_relative '../models/items'
 require_relative '../models/categories'
 require_relative '../db/db_connector'
