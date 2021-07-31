@@ -1,4 +1,4 @@
-require 'sinatra' #gem install sinatra -> buat install
+require 'sinatra'
 require_relative 'controller/itemcontroller'
 require_relative 'controller/categorycontroller'
 
