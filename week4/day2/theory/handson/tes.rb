@@ -1,4 +1,5 @@
 require_relative 'func.rb'
+require 'simplecov'
 
 RSpec.describe Func do
     it 'returns [1 3 8] if passed [1 3 7]' do
